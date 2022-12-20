@@ -8,6 +8,6 @@
         cmd: df -h
       register: free_space
 
-      debug:
+    - debug:
         var: free_space
    
