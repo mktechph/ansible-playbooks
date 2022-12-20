@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: "Check Free Space (df -h)"
+      ansible.builtin.shell:
+        cmd: df -h
+        register: free_space
+
+      debug:
+        var: free_space
+   
