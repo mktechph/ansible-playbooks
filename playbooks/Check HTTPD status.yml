@@ -1,5 +1,5 @@
 ---
-- hosts: SPN
+- hosts: all
   gather_facts: yes
 
   tasks:
