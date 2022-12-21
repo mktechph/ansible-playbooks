@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: "Check Running processes using top"
+      ansible.builtin.shell:
+        cmd: top
+      register: processes
+
+    - debug:
+        var: processes
+   
