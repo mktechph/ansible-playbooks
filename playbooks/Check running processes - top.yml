@@ -5,7 +5,7 @@
   tasks:
     - name: "Check Running processes using top"
       ansible.builtin.shell:
-        cmd: top
+        cmd: ls
       register: processes
 
     - debug:
