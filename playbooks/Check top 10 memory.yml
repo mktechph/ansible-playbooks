@@ -2,8 +2,7 @@
 - hosts: all
   gather_facts: yes
 
-  vars:
-    - memory
+  
 
   tasks:
     - name: "Check Running processes using top"
