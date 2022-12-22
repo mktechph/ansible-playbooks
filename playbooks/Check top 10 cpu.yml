@@ -19,9 +19,7 @@
       register: top_processes
     - name: Display top 5 running processes
       debug:
-        msg: "{{ item }}"
+        msg: "Name: {{ item.split(' ')[2] }}, CPU: {{ item.split(' ')[0] }}%, MEM: {{ item.split(' ')[1] }}%"
       loop: "{{ top_processes.stdout_lines[1:] }}"
       loop_control:
-        label: "{{ item.split(' ')[2] }} (CPU: {{ item.split(' ')[0] }}%, MEM: {{ item.split(' ')[1] }}%)"
-
-   
+        label: "{{ item.split(' ')[2] }}"
