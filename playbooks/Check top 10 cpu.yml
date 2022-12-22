@@ -6,9 +6,9 @@
     - name: "Check top 10 cpu"
       ansible.builtin.shell:
         cmd: ps aux --sort -%cpu | head -n 10
-      register: cpu
+      register: top_cpu
 
-    - name: Display top 10 CPU usaeg
+    - name: Display top 10 CPU usage
       debug:
-        msg: "{{ cpu.stdout_lines }}"
+        msg: "{{ top_cpu.stdout_lines }}"
    

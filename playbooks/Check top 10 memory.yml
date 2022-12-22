@@ -2,14 +2,13 @@
 - hosts: all
   gather_facts: yes
 
-
   tasks:
     - name: "Check top 10 memory"
       ansible.builtin.shell:
         cmd: ps aux --sort -%mem | head -n 10
-      register: memory
+      register: top_memory
 
     - name: Display top 10 memory
       debug:
-        msg: "{{ memory.stdout_lines }}"
+        msg: "{{ top_memory.stdout_lines }}"
    
