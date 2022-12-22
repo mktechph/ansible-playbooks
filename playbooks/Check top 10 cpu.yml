@@ -1,14 +1,27 @@
 ---
+#- hosts: all
+#  gather_facts: yes
+
+#  tasks:
+#    - name: "Check top 10 cpu"
+#      ansible.builtin.shell:
+#        cmd: ps aux --sort -%cpu | head -n 10
+#      register: top_cpu
+
+#    - name: Display top 10 CPU usage
+#      debug:
+#        msg: "{{ top_cpu.stdout_lines }}"
+
 - hosts: all
-  gather_facts: yes
-
   tasks:
-    - name: "Check top 10 cpu"
-      ansible.builtin.shell:
-        cmd: ps aux --sort -%cpu | head -n 10
-      register: top_cpu
-
-    - name: Display top 10 CPU usage
+    - name: Get top 5 running processes
+      shell: "ps aux --sort=-%cpu | awk '{print $3, $4, $11}' | head -n 6"
+      register: top_processes
+    - name: Display top 5 running processes
       debug:
-        msg: "{{ top_cpu.stdout_lines }}"
+        msg: "{{ item }}"
+      loop: "{{ top_processes.stdout_lines[1:] }}"
+      loop_control:
+        label: "{{ item.split(' ')[2] }} (CPU: {{ item.split(' ')[0] }}%, MEM: {{ item.split(' ')[1] }}%)"
+
    
