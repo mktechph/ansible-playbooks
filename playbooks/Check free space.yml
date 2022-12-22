@@ -3,11 +3,12 @@
   gather_facts: yes
 
   tasks:
-    - name: "Check Free Space df -h"
+    - name: "Check Free Space"
       ansible.builtin.shell:
         cmd: df -h
       register: free_space
 
-    - debug:
-        var: free_space
+    - name: Display Free Space 
+      debug:
+        msg: "{{ free_space.stdout_lines }}"
    
