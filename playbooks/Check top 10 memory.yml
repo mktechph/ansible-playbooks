@@ -5,7 +5,7 @@
   tasks:
     - name: "Check Running processes using top"
       ansible.builtin.shell:
-        cmd: ps aux --sort %mem | head -n 10
+        cmd: ps aux --sort -%mem | head -n 10
       register: memory
 
     - debug:
