@@ -3,11 +3,12 @@
   gather_facts: yes
 
   tasks:
-    - name: "Check Running processes using top"
+    - name: "Check top 10 cpu"
       ansible.builtin.shell:
         cmd: ps aux --sort -%cpu | head -n 10
       register: cpu
 
-    - debug:
-        var: cpu
+    - name: Display top 10 CPU usaeg
+      debug:
+        msg: "{{ cpu.stdout_lines }}"
    

@@ -2,10 +2,9 @@
 - hosts: all
   gather_facts: yes
 
-  
 
   tasks:
-    - name: "Check Running processes using top"
+    - name: "Check top 10 memory"
       ansible.builtin.shell:
         cmd: ps aux --sort -%mem | head -n 10
       register: memory
