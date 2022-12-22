@@ -7,8 +7,17 @@
       ansible.builtin.shell:
         cmd: ps aux --sort -%mem | head -n 10
       register: top_memory
+    
+    - name: "Check memory usage"
+      ansible.builtin.shell:
+        cmd: free -mh
+      register: free_memory
 
     - name: Display top 10 memory
       debug:
         msg: "{{ top_memory.stdout_lines }}"
+   
+    - name: Display memory usage
+      debug:
+        msg: "{{ free_memory.stdout_lines }}"
    
