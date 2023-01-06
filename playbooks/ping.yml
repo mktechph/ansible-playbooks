@@ -1,7 +1,10 @@
 ---
 - hosts: all
-  gather_facts: yes
-
   tasks:
-    - name: Execute ping
-      ansible.builtin.ping:
+    - name: Test connectivity to Linux host
+      ping:
+      when: ansible_os_family == "Linux"
+
+    - name: Test connectivity to Windows host
+      win_ping:
+      when: ansible_os_family == "Windows"
