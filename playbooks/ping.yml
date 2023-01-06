@@ -1,11 +1,11 @@
 ---
 - hosts: all
-  gather_facts: yes
+  gather_facts: no
   tasks:
     - name: Test connectivity to Linux host
       ping:
-      when: ansible_os_family == "Linux"
+      register: ping_result
 
-    - name: Test connectivity to Windows host
-      win_ping:
-      when: ansible_os_family == "Windows"
+    - name: Show ping result
+      debug:
+        var: ping_result
